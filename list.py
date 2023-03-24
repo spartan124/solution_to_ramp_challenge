@@ -1,5 +1,6 @@
 import re
 from collections import Counter
+
 nested_list = [
     ["Hello,",
     "We’re glad you’re here!"],
@@ -23,41 +24,100 @@ nested_list = [
     ["All flags are gathered for yourself."]
 ]
 
+
 # 1. The number of unique characters in the list.
-unique_chars = set(''.join([''.join(sublist) for sublist in nested_list]))
-print("Solution #1: Number of unique characters in the list:", len(unique_chars))
+def count_unique_chars(nested_list):
+    all_chars = ''.join([item for sublist in nested_list for item in sublist])
+    unique_chars = set(all_chars)
+    return len(unique_chars)
+
+num_unique_chars = count_unique_chars(nested_list)
+print("Number of unique characters:", num_unique_chars)
+
 
 # 2. The most common character in the list.
-most_common_char = Counter(''.join([''.join(sublist) for sublist in nested_list])).most_common(1)[0][0]
-print("Solution #2: Most common character in the list:", most_common_char)
+def most_common_character(nested_list):
+    all_chars = ''.join([item.replace(" ", "") for sublist in nested_list for item in sublist])
+    char_count = Counter(all_chars)
+    return char_count.most_common(1)[0][0]
+
+# Get the most common character
+most_common_char = most_common_character(nested_list)
+print("Most common character:", most_common_char)
 
 # 3. The character(s) that appear(s) the least in the list.
-least_common_chars = Counter(''.join([''.join(sublist) for sublist in nested_list])).most_common()[:-2:-1]
-print("Solution #3: Least common character(s) in the list:", least_common_chars[0][0])
+def least_common_character(nested_list):
+    all_chars = ''.join([item.replace(" ", "") for sublist in nested_list for item in sublist])
+    char_count = Counter(all_chars)
+    return char_count.most_common()[-1][0]
+# Get the least common character(s)
+least_common_chars = least_common_character(nested_list)
+
+print("Least common character(s):", least_common_chars)
 
 # 4. How many times the word "challenge" appears in the list.
-num_challenge = sum([sublist.count("challenge") for sublist in nested_list])
-print("Solution #4: Number of times the word 'challenge' appears in the list:", num_challenge)
+def count_word(nested_list, word):
+    count = 0
+    for item in nested_list:
+        if isinstance(item, list):
+            count += count_word(item, word)
+        elif isinstance(item, str):
+            count += item.count(word)
+    return count
+
+num_challenges = count_word(nested_list, "challenge")
+print("Number of times 'challenge' appears:", num_challenges)
 
 # 5. The fourth character of each string in the list.
-fourth_chars = [sublist[i][3] for sublist in nested_list for i in range(len(sublist))]
-print("Solution #5: Fourth character of each string in the list:", fourth_chars)
+def get_fourth_chars(nested_list):
+    fourth_chars = [item[3] for sublist in nested_list for item in sublist if len(item) > 3]
+    return fourth_chars
+
+fourth_chars = get_fourth_chars(nested_list)
+print("Fourth character of each string in the list:", fourth_chars)
 
 # 6. The number of strings in the list that start with the letter "L".
-num_start_L = sum([sublist[0][0] == 'L' for sublist in nested_list])
-print("Solution #6: Number of strings in the list that start with the letter 'L':", num_start_L)
+def count_words_starting_with(nested_list, char):
+    flattened_list = [item for sublist in nested_list for item in sublist]
+    count = sum([1 for word in flattened_list if word.startswith(char)])
+    return count
+
+print("Number of strings in the list that start with the letter 'L':", count_words_starting_with(nested_list, "L"))
 
 # 7. How many unique words are in the list?
-unique_words = set([word for sublist in nested_list for word in sublist])
-print("Solution #7: Number of unique words in the list:", len(unique_words))
+def count_unique_words(nested_list):
+    unique_words = set()
+    for sublist in nested_list:
+        for word in sublist:
+            unique_words.add(word)
+    count = len(unique_words)
+    return count
+
+print("Number of unique words in the list:", count_unique_words(nested_list))
 
 # 8. The longest string in the list.
-longest_string = max([' '.join(sublist) for sublist in nested_list], key=len)
-print("Solution #8: Longest string in the list:", longest_string)
+def find_longest_string(nested_list):
+    max_length = 0
+    longest_string = ""
+    for sublist in nested_list:
+        for string in sublist:
+            if len(string) > max_length:
+                max_length = len(string)
+                longest_string = string
+    return longest_string
+
+print("Longest string in the list:", find_longest_string(nested_list))
 
 # 9. The shortest string in the list.
-shortest_string = min([' '.join(sublist) for sublist in nested_list], key=len)
-print("Solution #9: Shortest string in the list:", shortest_string)
+def find_shortest_string(nested_list):
+    shortest_string = None
+    for sublist in nested_list:
+        for string in sublist:
+            if shortest_string is None or len(string) < len(shortest_string):
+                shortest_string = string
+    return shortest_string
+
+print("Shortest string in the list:", find_shortest_string(nested_list))
 
 # 10. The flag hidden somewhere in the list.
 
@@ -77,7 +137,7 @@ for list in nested_list:
 
 # print the flag if it was found
 if flag is not None:
-    print("Solution #10: The hidden Flag:", flag)
+    print("The hidden Flag: CTF[]", flag)
 else:
     print("Flag not found.")
 
