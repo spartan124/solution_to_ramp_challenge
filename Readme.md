@@ -43,13 +43,13 @@ Good luck!
 
 ## Solutions to the challenge
 
-Solution #1: Number of unique characters in the list: 43
-Solution #2: Most common character in the list: ' '
-Solution #3: Least common character(s) in the list: j
-Solution #4: Number of times the word 'challenge' appears in the list: 0
-Solution #5: Fourth character of each string in the list: ['l', 'r', ' ', 'i', 'u', 't', 'S', 't', 'd', 't', 'n', 'e', 'a', 'e', 'r', 'l', 'e', ' ', 'e', ' ']
-Solution #6: Number of strings in the list that start with the letter 'L': 0
-Solution #7: Number of unique words in the list: 20
-Solution #8: Longest string in the list: to use technology at the shelf of this situation, many startups opt to use of the shelf solutions. SaaS tools to help in the self-funded integration process.
-Solution #9: Shortest string in the list: would never join in making it
-Solution #10: The hidden Flag: 1
+- Solution #1: Number of unique characters in the list: 43
+- Solution #2: Most common character in the list: ' '
+- Solution #3: Least common character(s) in the list: j
+- Solution #4: Number of times the word 'challenge' appears in the list: 0
+- Solution #5: Fourth character of each string in the list: ['l', 'r', ' ', 'i', 'u', 't', 'S', 't', 'd', 't', 'n', 'e', 'a', 'e', 'r', 'l', 'e', ' ', 'e', ' ']
+- Solution #6: Number of strings in the list that start with the letter 'L': 0
+- Solution #7: Number of unique words in the list: 20
+- Solution #8: Longest string in the list: to use technology at the shelf of this situation, many startups opt to use of the shelf solutions. SaaS tools to help in the self-funded integration process.
+- Solution #9: Shortest string in the list: would never join in making it
+- Solution #10: The hidden Flag: 1
